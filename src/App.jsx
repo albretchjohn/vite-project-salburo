@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import Hero from './component/Hero.jsx';
+import Hero from './components/Hero.jsx';
 
 function App() {
   const [count, setCount] = useState(0)
