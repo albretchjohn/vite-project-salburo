@@ -1,0 +1,21 @@
+/* src/components/Hero.css */
+img {
+    opacity: 0; /* Start as invisible */
+    animation: fadeInOut 5s infinite;
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+.hey {
+ color: #1269cc;
+ position: absolute;
+ top: 0;
+ left: 0;
+}
