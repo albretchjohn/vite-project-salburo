@@ -8,7 +8,7 @@ function App() {
 
   return (
     
-<div className="bg-blue-800 text-white min-h-screen flex flex-col items-center justify-center p-6">
+<div className="bg-blue-800 text-white min-h-screen flex flex-col items-center justify-center p-6 rounded-2xl">
       {/* Hero Section */}
       <div className="text-center">
       <img src="/Makoto.jpg" alt="Depressed Kid" className="w-64 h-64 rounded-full" />
