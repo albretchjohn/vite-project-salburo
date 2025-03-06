@@ -27,6 +27,15 @@ function App() {
         <p className="text-gray-300">
           My skills include just about everything you ask of me, I could probably do it if I put my mind into it.
         </p>
+
+
+        <h2 className="text-2xl font-semibold mt-5">Goals</h2>
+        <p className="text-gray-300">
+          Be the best I can be at whatever it is I do.
+        </p>
+
+
+
       </div>
     </div>
     
