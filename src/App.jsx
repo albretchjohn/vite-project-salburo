@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import "./App.css"
 import "./global.css"
 import Projects from "./components/Projects"
+import './components/Hero.css';
 // import ScientificCalculator from './components/ScientificCalculator'
 
 function Home() {

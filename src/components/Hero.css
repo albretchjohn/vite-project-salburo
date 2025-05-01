@@ -1,5 +1,5 @@
 /* src/components/Hero.css */
-img {
+img[src="/Makoto.jpg"] {
     opacity: 0; /* Start as invisible */
     animation: fadeInOut 5s infinite;
   }
