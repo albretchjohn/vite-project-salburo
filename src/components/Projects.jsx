@@ -19,7 +19,7 @@ const projectsData = [
     id: 3,
     title: "Pokedex",
     description: "A pokedex app that fetches data from the PokeAPI",
-    image: "/tasks-screenshot.jpg",
+    image: "/PokeDex.JPG",
     websiteUrl: "https://albretchdex.netlify.app/", 
   },
 ]
