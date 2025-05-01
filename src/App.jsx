@@ -5,6 +5,17 @@ import Projects from "./components/Projects"
 import './components/Hero.css';
 // import ScientificCalculator from './components/ScientificCalculator'
 
+function NotFound() {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
+      <Link to="/" className="mt-4 text-blue-500 underline">
+        Go back to Home
+      </Link>
+    </div>
+  );
+}
+
 function Home() {
   return (
     <div className="bg-blue-800 text-white min-h-screen flex flex-col items-center justify-center p-6 rounded-2xl">
@@ -43,6 +54,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="*" element={<NotFound />} />
         {/* Add routes for individual projects */}
         <Route
           path="/calculator"
