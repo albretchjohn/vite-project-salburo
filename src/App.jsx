@@ -61,6 +61,99 @@ function VideoBackground({ src }) {
   )
 }
 
+// Responsive Background Component that switches between video and image
+function ResponsiveBackground({ videoSrc, imageSrc }) {
+  const videoRef = useRef(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Check if screen is mobile size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768) // Standard breakpoint for mobile
+    }
+
+    // Initial check
+    checkMobile()
+
+    // Add resize listener
+    window.addEventListener("resize", checkMobile)
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
+
+  // Video size adjustment for desktop
+  useEffect(() => {
+    if (!videoRef.current || isMobile) return
+
+    const setVideoSize = () => {
+      if (!videoRef.current) return
+
+      const video = videoRef.current
+      const videoRatio = video.videoWidth / video.videoHeight
+      const windowRatio = window.innerWidth / window.innerHeight
+
+      if (windowRatio > videoRatio) {
+        // Window is wider than video
+        video.style.width = "100vw"
+        video.style.height = "auto"
+      } else {
+        // Window is taller than video
+        video.style.width = "auto"
+        video.style.height = "100vh"
+      }
+    }
+
+    // Set size initially and on video metadata load
+    videoRef.current.addEventListener("loadedmetadata", setVideoSize)
+
+    // Update on window resize
+    window.addEventListener("resize", setVideoSize)
+
+    // Call once to set initial size
+    if (videoRef.current.readyState >= 1) {
+      setVideoSize()
+    }
+
+    return () => {
+      if (videoRef.current) {
+        videoRef.current.removeEventListener("loadedmetadata", setVideoSize)
+      }
+      window.removeEventListener("resize", setVideoSize)
+    }
+  }, [isMobile])
+
+  return (
+    <div className="background-wrapper">
+      {isMobile ? (
+        // Image background for mobile
+        <div
+          className="image-background"
+          style={{
+            backgroundImage: `url(${imageSrc})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: -1,
+          }}
+        />
+      ) : (
+        // Video background for desktop
+        <div className="video-wrapper">
+          <video ref={videoRef} autoPlay muted loop playsInline className="video-background">
+            <source src={videoSrc} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
+    </div>
+  )
+}
+
 function NotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -76,7 +169,11 @@ function Home() {
   return (
     <div className="page-container">
       {/* Background Video */}
-      <VideoBackground src="Drown2.mp4" />
+      {/* <VideoBackground src="Drown2.mp4" /> */}
+      <ResponsiveBackground
+        videoSrc="Drown2.mp4"
+        imageSrc="sleep.jpg" // Create this image as a screenshot from your video
+      />
 
       {/* Foreground Content */}
       <div className="content-container">
@@ -119,11 +216,10 @@ function Home() {
   )
 }
 
-
 const galleryImages = [
   {
     id: 1,
-    src: "My_first_program.JPG", 
+    src: "My_first_program.JPG",
     alt: "My First Coding Assignment",
     title: "My First Coding Assignment",
     description:
@@ -190,10 +286,8 @@ const galleryImages = [
     src: "CBT.png",
     alt: "CBT",
     title: "Color Blind Test Web App",
-    description:
-      "I made a color blind test app that uses Ishihara plates as my Capstone project.",
+    description: "I made a color blind test app that uses Ishihara plates as my Capstone project.",
   },
-
 ]
 
 // New Blog Page Component with Photo Gallery and Pagination
@@ -202,10 +296,8 @@ function Blog() {
   const [currentPage, setCurrentPage] = useState(1)
   const imagesPerPage = 9
 
-  
   const totalPages = Math.ceil(galleryImages.length / imagesPerPage)
 
-  
   const indexOfLastImage = currentPage * imagesPerPage
   const indexOfFirstImage = indexOfLastImage - imagesPerPage
   const currentImages = galleryImages.slice(indexOfFirstImage, indexOfLastImage)
@@ -237,7 +329,7 @@ function Blog() {
 
   return (
     <div className="page-container">
-      {/* Background Video */}
+      {/* Responsive Background - Use a still frame from the video as the mobile image */}
       <VideoBackground src="water.mp4" />
 
       {/* Blog Content */}
@@ -258,8 +350,8 @@ function Blog() {
 
             <h2 className="text-2xl font-bold mt-8 mb-4">My Skills</h2>
             <p className="mb-4">
-              My skills include just about everything you ask of me, I could probably do it if I put my mind into it. I mostly
-              specialize in backend skills such as:
+              My skills include just about everything you ask of me, I could probably do it if I put my mind into it. I
+              mostly specialize in backend skills such as:
             </p>
             <ul className="list-disc pl-6 mb-6">
               <li>Data Structuring</li>
@@ -272,21 +364,19 @@ function Blog() {
 
             <h2 className="text-2xl font-bold mt-8 mb-4">My Philosophy</h2>
             <p className="mb-4">
-              It took me a while to realize, that I can never learn everything.
-              To put it into perspective,
-              The tech industry is as vast as the universe, and we who specialize in tech only travel and study it.
+              It took me a while to realize, that I can never learn everything. To put it into perspective, The tech
+              industry is as vast as the universe, and we who specialize in tech only travel and study it.
             </p>
 
             <h2 className="text-2xl font-bold mt-8 mb-4">When I'm Not Coding</h2>
-            <p className="mb-4">
-              Thinking about life and being philosophical.
-            </p>
+            <p className="mb-4">Thinking about life and being philosophical.</p>
 
             {/* Photo Gallery Section */}
             <h2 className="text-2xl font-bold mt-12 mb-6">Photo Gallery</h2>
             <p className="mb-6">
-              Here are some snapshots from my journey as a developer. It's funny how a single image can tell a story or evoke a memory.
-              I hope you enjoy this little gallery of my experiences from the moment I started until today.
+              Here are some snapshots from my journey as a developer. It's funny how a single image can tell a story or
+              evoke a memory. I hope you enjoy this little gallery of my experiences from the moment I started until
+              today.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
