@@ -6,6 +6,8 @@ import "./global.css"
 import Projects from "./components/Projects"
 import "./components/Hero.css"
 import { useEffect, useRef, useState } from "react"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 // Video Background Component
 function VideoBackground({ src }) {
@@ -183,7 +185,11 @@ function Home() {
         </div>
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-2 text-shadow-lg">Hello, I'm Albretch</h1>
-          <p className="text-base font-bold mb-5 text-shadow">Fullstack Developer | React Enjoyer</p>
+          <p className="text-base font-bold mb-1 text-shadow">Fullstack Developer | React Enjoyer</p>
+          <p className="text-base font-bold mb-3 text-shadow-lg flex items-center justify-center gap-2">
+              <FontAwesomeIcon icon={faEnvelope} className="text-lg" />
+              Reach out to me: albretchsalburo@gmail.com
+          </p>
           <Link
             to="/projects"
             className="bg-white text-blue-900 px-4 py-2 rounded-lg font-bold hover:bg-gray-200 transition"
