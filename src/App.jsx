@@ -182,8 +182,8 @@ function Home() {
           <img src="/Makoto.jpg" alt="Albretch" className="w-64 h-64 rounded-full" />
         </div>
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-2">Hello, I'm Albretch</h1>
-          <p className="text-base font-bold mb-5">Fullstack Developer | React Enjoyer</p>
+          <h1 className="text-4xl font-bold mb-2 text-shadow-lg">Hello, I'm Albretch</h1>
+          <p className="text-base font-bold mb-5 text-shadow">Fullstack Developer | React Enjoyer</p>
           <Link
             to="/projects"
             className="bg-white text-blue-900 px-4 py-2 rounded-lg font-bold hover:bg-gray-200 transition"
@@ -194,8 +194,8 @@ function Home() {
 
         {/* About Me Section */}
         <div className="mt-10 max-w-lg text-center">
-          <h2 className="text-2xl font-bold mb-2">About Me</h2>
-          <p className="font-bold mb-4">
+          <h2 className="text-2xl font-bold mb-2 text-shadow-lg">About Me</h2>
+          <p className="font-bold mb-4 text-shadow">
             My skills include just about everything you ask of me, I could probably do it if I put my mind into it.
           </p>
           <Link
@@ -208,8 +208,8 @@ function Home() {
 
         {/* Goals Section */}
         <div className="mt-10 max-w-lg text-center">
-          <h2 className="text-2xl font-bold mb-2">Goals</h2>
-          <p className="font-bold">Be the best I can be at whatever it is I do.</p>
+          <h2 className="text-2xl font-bold mb-2 text-shadow-lg">Goals</h2>
+          <p className="font-bold text-shadow">Be the best I can be at whatever it is I do.</p>
         </div>
       </div>
     </div>
